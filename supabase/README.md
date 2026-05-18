@@ -98,15 +98,17 @@ gh run watch --repo TimHacker/loupe                  # wait for it to finish
 
 It should report `{"feedsProcessed":0,...}` (no feeds yet — that's correct).
 
-## 8. Sign in once, then close the door
+## 8. Pre-create your user, then close the door
 
-The frontend isn't built yet, so use the dashboard's Auth tab to send yourself a magic link. Click it. You're now a registered user.
+The order matters: create your user first via the dashboard (an admin action, unaffected by the signup setting), **then** disable public signup. This avoids any window where someone else could sign themselves up.
 
-Then **disable email signup** so nobody else can do the same:
-
-- Dashboard → Authentication → Providers → Email.
-- Turn **Enable email signup** off.
-- Save.
+1. **Disable email signup** first.
+   - Dashboard → Authentication → Providers → Email.
+   - Turn **Enable email signup** off. Save.
+2. **Add your own user.**
+   - Dashboard → Authentication → Users → **Add user** → **Create new user**.
+   - Enter your email; tick **Auto Confirm User** so you don't need to verify.
+3. Magic-link sign-in remains available for existing users only; you'll use it once the frontend sign-in screen is built.
 
 Closes bead [#19](https://github.com/TimHacker/loupe/issues/19).
 
