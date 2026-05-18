@@ -53,18 +53,21 @@ bd close <id>         # Complete work
 
 ## Build & Test
 
-_Add your build and test commands here_
-
 ```bash
-# Example:
-# npm install
-# npm test
+npm install
+npm run dev          # Vite dev server
+npm run verify       # lint + typecheck + unit tests + build
+npm run test:e2e     # Playwright smoke
 ```
 
 ## Architecture Overview
 
-_Add a brief overview of your project architecture_
+Static SPA on GitHub Pages backed by Supabase (Postgres + RLS, Auth, Storage, Edge Functions). Feed fetching is a Deno Edge Function scheduled every two hours by a GitHub Actions cron. No SSR layer. AI augmentation is on the roadmap but not in MVP — Postgres-with-pgvector is the substrate. See [docs/adr/](docs/adr/) for the architecture decisions.
 
 ## Conventions & Patterns
 
-_Add your project-specific conventions here_
+- **Red/green TDD.** Failing Vitest or Playwright test first, smallest passing implementation, refactor. No code without a test that would have failed beforehand.
+- **ADRs** in `docs/adr/` for any load-bearing or non-reversible decision. MADR format.
+- **Conventional Commits**, one commit per red→green→refactor cycle or per scaffolded directory.
+- **British English** in user-facing copy and docs.
+- **GitHub Actions** for CI, deploy to `gh-pages`, and the 2-hourly refresh cron. Nothing else.
