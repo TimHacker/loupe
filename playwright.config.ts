@@ -16,7 +16,7 @@ export default defineConfig({
   ],
   webServer: {
     command: 'npm run build && npm run preview -- --port 4173',
-    url: 'http://localhost:4173/claude-reader/',
+    url: 'http://localhost:4173/loupe/',
     reuseExistingServer: !process.env.CI,
     timeout: 120_000,
   },

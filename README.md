@@ -1,8 +1,6 @@
-# Claude Reader
+# Loupe
 
 A personal aggregator for AI and software-engineering news. Follows RSS, Atom, Substack, YouTube channels and podcasts in one place. Installable as a PWA on Mac and Android, sync via Supabase, hosted on GitHub Pages for free indefinitely.
-
-This is a Claude-built counterpart to the Codex-built [Signal Reader](../rss-reader) — same brief, independent execution.
 
 ## Stack
 

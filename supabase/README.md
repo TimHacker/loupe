@@ -1,6 +1,6 @@
 # Supabase setup
 
-Claude Reader uses Supabase free tier for Auth, Postgres, Storage, and Edge Functions. The Edge Functions are scheduled by the GitHub Actions cron in [.github/workflows/refresh.yml](../.github/workflows/refresh.yml).
+Loupe uses Supabase free tier for Auth, Postgres, Storage, and Edge Functions. The Edge Functions are scheduled by the GitHub Actions cron in [.github/workflows/refresh.yml](../.github/workflows/refresh.yml).
 
 ## First-time setup
 

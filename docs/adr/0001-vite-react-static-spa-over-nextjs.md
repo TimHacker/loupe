@@ -7,7 +7,7 @@
 
 The app is a personal news reader for one user across Mac and Android, installable as a PWA. There is no SSR requirement (every view is auth-gated and personal; no SEO surface to speak of) and no server-side rendering would improve perceived performance, because the service worker caches the shell.
 
-The default reach is Next.js on Vercel Hobby. The prior Codex-built Signal Reader took that path. Vercel Hobby caps cron jobs at one per day, so on-the-hour refresh requires an external scheduler regardless of the framework. Once an external scheduler is involved, Next.js's API routes and SSR earn no keep for a single-user app with no SEO and no server rendering.
+The default reach is Next.js on Vercel Hobby. Vercel Hobby caps cron jobs at one per day, so any sub-daily refresh requires an external scheduler regardless of the framework. Once an external scheduler is involved, Next.js's API routes and SSR earn no keep for a single-user app with no SEO and no server rendering.
 
 ## Decision
 

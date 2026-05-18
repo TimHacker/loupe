@@ -1,4 +1,4 @@
--- Claude Reader: initial schema.
+-- Loupe: initial schema.
 --
 -- Shape:
 --   feeds       — one row per feed URL, shared across users so refresh runs once per feed
