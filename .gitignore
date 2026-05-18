@@ -1,0 +1,50 @@
+# Node
+node_modules
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Build
+dist
+dist-ssr
+*.local
+
+# Editor
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Vite
+*.tsbuildinfo
+
+# Tests
+coverage
+playwright-report
+test-results
+.playwright
+
+# Env
+.env
+.env.local
+.env.*.local
+
+# Beads — keep issues.jsonl and config.yaml committed; ignore the Dolt DB and runtime artefacts
+.beads/embeddeddolt/
+.beads/backup/
+.beads/.lock
+.beads/.local_version
+.beads/last-touched
+.beads/export-state.json
+.beads/interactions.jsonl
+
+# Supabase local
+supabase/.branches
+supabase/.temp
