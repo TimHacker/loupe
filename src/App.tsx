@@ -3,7 +3,8 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { AuthProvider } from './lib/auth'
 import { Layout } from './routes/Layout'
 import { SignIn } from './routes/SignIn'
-import { Home } from './routes/Home'
+import { Items } from './routes/Items'
+import { Reader } from './routes/Reader'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -16,7 +17,12 @@ const router = createBrowserRouter(
     {
       path: '/',
       element: <Layout />,
-      children: [{ index: true, element: <Home /> }],
+      children: [
+        { index: true, element: <Items /> },
+        { path: 'feed/:feedId', element: <Items /> },
+        { path: 'saved', element: <Items savedOnly /> },
+        { path: 'item/:itemId', element: <Reader /> },
+      ],
     },
     { path: '/sign-in', element: <SignIn /> },
   ],
