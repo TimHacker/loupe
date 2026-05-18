@@ -46,32 +46,3 @@ export interface ItemStateRow {
   archived_at: string | null
   listen_position_seconds: number | null
 }
-
-type WithOptional<T, K extends keyof T> = Omit<T, K> & Partial<Pick<T, K>>
-
-export interface Database {
-  public: {
-    Tables: {
-      feeds: {
-        Row: FeedRow
-        Insert: WithOptional<FeedRow, 'id' | 'created_at'>
-        Update: Partial<FeedRow>
-      }
-      items: {
-        Row: ItemRow
-        Insert: WithOptional<ItemRow, 'id' | 'created_at'>
-        Update: Partial<ItemRow>
-      }
-      subscriptions: {
-        Row: SubscriptionRow
-        Insert: WithOptional<SubscriptionRow, 'created_at' | 'sort_order'>
-        Update: Partial<SubscriptionRow>
-      }
-      item_state: {
-        Row: ItemStateRow
-        Insert: WithOptional<ItemStateRow, 'saved'>
-        Update: Partial<ItemStateRow>
-      }
-    }
-  }
-}

@@ -86,12 +86,19 @@ create index item_state_unread_idx on public.item_state (user_id) where read_at 
 -- Row-Level Security
 -- ---------------------------------------------------------------------------
 
--- feeds and items: readable by any authenticated user; writes only via service role.
+-- feeds: readable by any authenticated user; insertable too (the add-feed flow needs this,
+-- because a brand-new feed has to be created before the first subscription can reference it).
+-- Updates and deletes stay service-role only — refresh-feeds owns last_fetched_at, etag, etc.
 alter table public.feeds enable row level security;
-alter table public.items enable row level security;
 
 create policy "feeds: authenticated read" on public.feeds
     for select to authenticated using (true);
+
+create policy "feeds: authenticated insert" on public.feeds
+    for insert to authenticated with check (true);
+
+-- items: read-only for authenticated users. Service role (refresh-feeds) owns inserts.
+alter table public.items enable row level security;
 
 create policy "items: authenticated read" on public.items
     for select to authenticated using (true);
