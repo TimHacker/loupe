@@ -1,0 +1,7 @@
+{
+  "database": "dolt",
+  "backend": "dolt",
+  "dolt_mode": "embedded",
+  "dolt_database": "claude_reader",
+  "project_id": "c4dd20ca-c861-4359-a741-a295aa136765"
+}
