@@ -7,6 +7,10 @@ export default defineConfig({
     globals: true,
     environment: 'jsdom',
     setupFiles: ['./tests/unit/setup.ts'],
-    include: ['tests/unit/**/*.test.{ts,tsx}', 'src/**/*.test.{ts,tsx}'],
+    include: [
+      'tests/unit/**/*.test.{ts,tsx}',
+      'src/**/*.test.{ts,tsx}',
+      'supabase/functions/_shared/**/*.test.ts',
+    ],
   },
 })
