@@ -1,12 +1,34 @@
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { AuthProvider } from './lib/auth'
+import { Layout } from './routes/Layout'
+import { SignIn } from './routes/SignIn'
+import { Home } from './routes/Home'
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: { staleTime: 60_000, refetchOnWindowFocus: false },
+  },
+})
+
+const router = createBrowserRouter(
+  [
+    {
+      path: '/',
+      element: <Layout />,
+      children: [{ index: true, element: <Home /> }],
+    },
+    { path: '/sign-in', element: <SignIn /> },
+  ],
+  { basename: '/loupe' },
+)
+
 export function App() {
   return (
-    <main className="min-h-dvh bg-neutral-950 text-neutral-100">
-      <div className="mx-auto max-w-2xl px-6 py-16">
-        <h1 className="text-3xl font-semibold tracking-tight">Loupe</h1>
-        <p className="mt-3 text-neutral-400">
-          Personal aggregator for AI and software-engineering news. Setup in progress.
-        </p>
-      </div>
-    </main>
+    <QueryClientProvider client={queryClient}>
+      <AuthProvider>
+        <RouterProvider router={router} />
+      </AuthProvider>
+    </QueryClientProvider>
   )
 }

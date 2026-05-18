@@ -27,6 +27,10 @@ You'll also need a GitHub Personal Access Token in your shell (`gh auth token` w
 
    The service-role key stays out of `.env.local`. We pass it only to the Edge Functions via `supabase secrets`.
 
+5. **Allowlist the magic-link redirect URLs** in the dashboard → Authentication → URL Configuration:
+   - **Site URL:** `https://timhacker.github.io/loupe/`
+   - **Additional redirect URLs:** `http://localhost:5173/loupe/` (for `npm run dev`)
+
 ## 2. Apply the schema
 
 Two options. Choose either.
@@ -75,9 +79,10 @@ supabase functions deploy refresh-feeds
 
 Watch the deploy logs in the dashboard's Functions tab — both should land within ~30 s.
 
-## 6. Wire the GitHub Actions cron
+## 6. Wire the GitHub Actions secrets
 
 ```bash
+# Refresh cron — server-to-server only:
 gh secret set SUPABASE_FUNCTION_URL \
   --repo TimHacker/loupe \
   --body "https://<project-ref>.supabase.co/functions/v1/refresh-feeds"
@@ -85,9 +90,20 @@ gh secret set SUPABASE_FUNCTION_URL \
 gh secret set FUNCTION_SECRET \
   --repo TimHacker/loupe \
   --body "$FUNCTION_SECRET"
+
+# Frontend build — these are baked into the deployed JS bundle, which is fine:
+gh secret set VITE_SUPABASE_URL \
+  --repo TimHacker/loupe \
+  --body "https://<project-ref>.supabase.co"
+
+gh secret set VITE_SUPABASE_ANON_KEY \
+  --repo TimHacker/loupe \
+  --body "<anon key>"
 ```
 
-Confirm: <https://github.com/TimHacker/loupe/settings/secrets/actions> shows both.
+Confirm: <https://github.com/TimHacker/loupe/settings/secrets/actions> shows all four. The next deploy will pick up the `VITE_*` pair and the live site will be able to sign in.
+
+For local `npm run dev` you'll want the same `VITE_*` values in `.env.local` (see step 1).
 
 ## 7. Trigger the first run
 
