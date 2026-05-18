@@ -18,6 +18,8 @@ npm install
 npm run dev
 ```
 
+You'll need a Supabase project before anything beyond the static shell does useful work — see [supabase/README.md](supabase/README.md) for the 15-minute walkthrough.
+
 ## Verify
 
 ```bash
